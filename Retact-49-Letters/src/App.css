@@ -3,4 +3,32 @@
   flex-direction: column;
   width: 100vw;
   max-width: 1000px;
+  font-family: Calibri, sans-serif;
+  overflow: hidden;
+}
+
+/* THEMES  */
+:root {
+--Primary-Text: #000000;
+--Secondary-Text: #DBDBDB;
+--Light-Gray: #eaeaea;
+--Gray: #DBDBDB;
+--Orange: #F8CBAD;
+--Yellow: #FFE699;
+--Green: #C5E0B4;
+--Blue: #bdd7ee;
+--Pink: #F5CFFF;
+
+}
+
+[data-theme='dark'] {
+  --Primary-Text: #000000;
+  --Secondary-Text: #DBDBDB;
+  --Light-Gray: #eaeaea;
+  --Gray: #DBDBDB;
+  --Orange: #F8CBAD;
+  --Yellow: #FFE699;
+  --Green: #C5E0B4;
+  --Blue: #bdd7ee;
+  --Pink: #F5CFFF;
 }

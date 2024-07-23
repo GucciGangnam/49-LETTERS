@@ -1,3 +1,190 @@
-.GamePage{ 
-    
+.GamePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* TOP SECTION */
+/* LEFT */
+.Top-Section {
+    outline: 1px solid black;
+    width: 90%;
+    display: flex;
+    gap: 10px;
+    height: 300px;
+    max-height: 250px;
+}
+
+.Top-Section-Left {
+    /* background-color: pink; */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.Top-Section-Left-Word-Container {
+    /* outline: 1px solid black; */
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+}
+
+.Top-Section-Left-Word-Box {
+    background-color: var(--Green);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+
+}
+
+/* RIGHT */
+.Top-Section-Right {
+    flex: 1;
+    display: flex;
+    justify-content: end;
+
+}
+
+.Letter-Count {
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+
+/* CURRENT WORD */
+
+.Current-Word-Section {
+    outline: 1px solid black;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    gap: 5px;
+}
+
+.Current-Word-Section-Box {
+    background-color: var(--Orange);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+
+}
+
+
+
+/* STRING SECTION */
+.String-Section {
+    /* outline: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90vw;
+    max-width: 1000px;
+
+}
+.String-Section-Current-Letter-Box-Border{ 
+    border: 5px solid var(--Green);
+    border-radius: 10px;
+    padding: 5px;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.String-Section-Current-Letter-Box{
+    background-color: var(--Light-Gray);
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+
+.String-Section-Letter-Box{
+    background-color: var(--Light-Gray);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+}
+
+
+/* ADD WORD BTN */
+/* .Add-Word-Button {
+    outline: 1px solid black;
+    width: 200px;
+    height: 50px;
+    background-color: var(--Green);
+    border: none;
+    color: white;
+    font-size: larger;
+}
+
+.Add-Word-Button{
+    cursor: url('/public/Cursor.png') 0 0, auto;
+} */
+
+
+/* KEYBOARD */
+.Keyboard {
+    outline: 1px solid black;
+    width: calc(100% - 5px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+}
+
+.Keyboard-Row{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.Keyboard-Row .Keyboard-Button{ 
+    width: 10%;
+    height: 55px;
+    background: none;
+    border: 1px solid rgb(214, 214, 214);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Keyboard-Row .Keyboard-Button:hover{ 
+    background-color: var(--Green);
+    font-size: larger;
+    cursor: url('/public/Cursor.png') 0 0, auto;
+
+}
+
+.Keyboard-Row .Special-Button{ 
+    width: 15%;
+    height: 55px;
+    border: 1px solid rgb(214, 214, 214);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Keyboard-Row .Special-Button:hover{ 
+    font-size: larger;
+    cursor: url('/public/Cursor.png') 0 0, auto;
 }

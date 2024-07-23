@@ -1,0 +1,88 @@
+.LandingPage{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* TITLE */
+.Title{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    gap: 5px;
+}
+
+.Title-Box-Black{
+    outline: 1px solid black;
+    width: 40px;
+    height: 40px;
+    background-color: black;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-weight: bolder;
+}
+
+.Title-Box-White{
+    outline: 1px solid black;
+    width: 40px;
+    height: 40px;
+    background-color: none;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+/* PLAY BUTTON */
+.Play-Container{
+    display: flex;
+    gap: 5px;
+    outline: 1px solid black;
+    padding: 5px;
+    border-radius: 10px;
+}
+.Play-Container:hover{ 
+    background: var(--Orange);
+}
+
+.Play-Container-Box{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 5px;
+    background-color: var(--Orange);
+}
+
+/* HOW TO PLAY BUTTON */
+.How-To-Play-Container{
+    display: flex;
+    gap: 5px;
+    outline: 1px solid black;
+    padding: 5px;
+    border-radius: 10px;
+}
+.How-To-Play-Container:hover{ 
+    background: var(--Green);
+}
+
+.How-To-Play-Container-Box{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 5px;
+    background-color: var(--Green);
+}
+
+
+
