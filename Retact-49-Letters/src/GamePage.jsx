@@ -26,21 +26,114 @@ export const GamePage = () => {
     // COMPLETED WORDS ARRAY 
     const [userStringArray, setUserStringArray] = useState([])
     const [completedWords, setCompletedWords] = useState([]);
-    console.log(completedWords)
 
     // STRING CHAR COUNT (Start at 0 finish at 48)
     const [stringCharCount, setStringCharCount] = useState(0)
 
     //USER INPUT
     const [userInput, setUserInput] = useState([])
+    const [invalidWord, setInvalidWord] = useState(false);
 
 
-    // LETTER PRESS FUNCTION
+    // DESKTOP KEY PRESS LISTENERS
+    useEffect(() => {
+
+        // Function must be inside UE?
+        const handleKeyDown = (e) => {
+            const key = e.key.toUpperCase();
+            // Check if key is a single uppercase letter
+            if (key.length === 1 && key >= 'A' && key <= 'Z') {
+                KeyboardletterPressFunction(key);
+            } 
+            if (key === "ENTER"){ 
+                KeyboardEnterKeyPress();
+            }
+
+            if (key === "BACKSPACE"){ 
+                KeyboardDeletePressFunction();
+            }
+
+        }
+        // KEYBOARD LETTER PRESS FUNCTION
+        const KeyboardletterPressFunction = (key) => {
+            if (stringCharCount >= 49) {
+                return;
+            }
+            if (generatedString[stringCharCount] === " ") {
+                setStringCharCount(prevCount => prevCount + 1);
+                setUserInput(prevArr => [...prevArr, key]);
+                console.log(userInput)
+            } else {
+                const exclusiveLetter = generatedString[stringCharCount];
+                if (exclusiveLetter === key) {
+                    setStringCharCount(prevCount => prevCount + 1);
+                    setUserInput(prevArr => [...prevArr, key]);
+                    console.log(userInput)
+                } else {
+                    return;
+                }
+            }
+        }
+        // KEYBOARD DELETE PRESS FUNCTION
+        const KeyboardDeletePressFunction = () => {
+            if (stringCharCount <= 0) {
+                return;
+            }
+            if (userInput.length === 0) {
+                console.log('ntg to dlt');
+                setCompletedWords((prevState) => {
+                    // Capture the last array before removing it
+                    const arrayToRemove = prevState[prevState.length - 1];
+                    setUserInput(arrayToRemove);
+                    const arrayLength = arrayToRemove.length;
+                    setUserStringArray(prevArr => prevArr.slice(0, -arrayLength));
+                    // Remove the last array from the previous state
+                    return prevState.slice(0, -1);
+                });
+                return;
+            }
+            else {
+                setStringCharCount(prevCount => prevCount - 1);
+                setUserInput(prevArr => prevArr.slice(0, -1));
+            }
+        }
+        // KEYBOARD ENTER PRESS FUNCTION
+        const KeyboardEnterKeyPress = () => {
+            // Deconstruct userInput into a string
+            const wordToCheck = userInput.join('');
+            if (wordExists(wordToCheck)) {
+                setUserStringArray(prevArr => [...prevArr, ...userInput]);
+                console.log(userStringArray);
+                setCompletedWords(prevArr => [...prevArr, userInput]);
+                setUserInput([])
+            } else {
+                setInvalidWord(true);
+                setTimeout(() => {
+                    setInvalidWord(false);
+                }, 300)
+            }
+        };
+
+
+
+        // Set up 
+        window.addEventListener('keydown', handleKeyDown);
+
+        // Clean up
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [generatedString, stringCharCount, userInput, userStringArray]);
+
+
+    // ON SCREEN LETTER PRESS FUNCTION
     const letterPressFunction = (e) => {
         if (stringCharCount >= 49) {
             return;
         }
         const inputtedLetter = e.target.innerHTML
+        console.log(inputtedLetter)
+        console.log("OS INPUT LETTER " + inputtedLetter)
         // If generatedString[stringCharCount] is " " then add that letter to current word array
         if (generatedString[stringCharCount] === " ") {
             setStringCharCount(prevCount => prevCount + 1);
@@ -53,7 +146,6 @@ export const GamePage = () => {
                 setUserInput(prevArr => [...prevArr, inputtedLetter]);
                 console.log(userInput)
             } else {
-                console.group("only letter " + generatedString[stringCharCount] + " can go here")
                 return;
             }
         }
@@ -94,6 +186,10 @@ export const GamePage = () => {
             setUserInput([])
         } else {
             console.log('NOT A WORD')
+            setInvalidWord(true);
+            setTimeout(() => {
+                setInvalidWord(false);
+            }, 300)
         }
     };
 
@@ -165,8 +261,6 @@ export const GamePage = () => {
 
             <div className="String-Section">
 
-
-
                 <div className="String-Section-Current-Letter-Box-Border">
                     <div className="String-Section-Current-Letter-Box">
                         {generatedString[stringCharCount]}
@@ -189,12 +283,12 @@ export const GamePage = () => {
                 </div>
             </div>
 
-            <div className="Current-Word-Section">
+            <div className={invalidWord ? "Current-Word-Section-Invalid" : "Current-Word-Section"}>
 
                 {userInput.map((letter, index) => (
                     <div
                         key={index}
-                        className="Current-Word-Section-Box">
+                        className={invalidWord ? "Current-Word-Section-Box-Invalid" : "Current-Word-Section-Box"}>
                         {letter}
                     </div>
                 ))}

@@ -8,7 +8,7 @@
 /* TOP SECTION */
 /* LEFT */
 .Top-Section {
-    outline: 1px solid black;
+    /* outline: 1px solid black; */
     width: 90%;
     display: flex;
     gap: 10px;
@@ -17,7 +17,6 @@
 }
 
 .Top-Section-Left {
-    /* background-color: pink; */
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -28,23 +27,24 @@
     /* outline: 1px solid black; */
     display: flex;
     gap: 5px;
-    padding: 5px;
+    padding: 2.5px;
 }
 
 .Top-Section-Left-Word-Box {
     background-color: var(--Green);
     width: 30px;
+    max-height: 30px;
+    max-width: 30px;
     height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-
 }
 
 /* RIGHT */
 .Top-Section-Right {
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     justify-content: end;
 
@@ -63,9 +63,8 @@
 }
 
 /* CURRENT WORD */
-
 .Current-Word-Section {
-    outline: 1px solid black;
+    /* outline: 1px solid black; */
     display: flex;
     align-items: center;
     padding: 5px;
@@ -81,8 +80,52 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-
 }
+
+/* CURRENT WORD INVALID */
+.Current-Word-Section-Invalid {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    gap: 5px;
+    height: 30px;
+    animation: shake 0.2s ease-in-out;
+}
+
+.Current-Word-Section-Box-Invalid {
+    background-color: var(--Red);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+/* Define the keyframes for the shake animation */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
 
 
 
@@ -91,12 +134,14 @@
     /* outline: 1px solid black; */
     display: flex;
     align-items: center;
+    gap: 5px;
     justify-content: space-between;
     width: 90vw;
     max-width: 1000px;
 
 }
-.String-Section-Current-Letter-Box-Border{ 
+
+.String-Section-Current-Letter-Box-Border {
     border: 5px solid var(--Green);
     border-radius: 10px;
     padding: 5px;
@@ -106,7 +151,8 @@
     justify-content: center;
     align-items: center;
 }
-.String-Section-Current-Letter-Box{
+
+.String-Section-Current-Letter-Box {
     background-color: var(--Light-Gray);
     border-radius: 10px;
     width: 100%;
@@ -117,7 +163,7 @@
     font-size: 3rem;
 }
 
-.String-Section-Letter-Box{
+.String-Section-Letter-Box {
     background-color: var(--Light-Gray);
     border-radius: 10px;
     display: flex;
@@ -146,7 +192,7 @@
 
 /* KEYBOARD */
 .Keyboard {
-    outline: 1px solid black;
+    /* outline: 1px solid black; */
     width: calc(100% - 5px);
     display: flex;
     flex-direction: column;
@@ -155,13 +201,13 @@
     align-items: center;
 }
 
-.Keyboard-Row{
+.Keyboard-Row {
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-.Keyboard-Row .Keyboard-Button{ 
+.Keyboard-Row .Keyboard-Button {
     width: 10%;
     height: 55px;
     background: none;
@@ -170,14 +216,15 @@
     justify-content: center;
     align-items: center;
 }
-.Keyboard-Row .Keyboard-Button:hover{ 
+
+.Keyboard-Row .Keyboard-Button:hover {
     background-color: var(--Green);
     font-size: larger;
     cursor: url('/public/Cursor.png') 0 0, auto;
 
 }
 
-.Keyboard-Row .Special-Button{ 
+.Keyboard-Row .Special-Button {
     width: 15%;
     height: 55px;
     border: 1px solid rgb(214, 214, 214);
@@ -185,7 +232,8 @@
     justify-content: center;
     align-items: center;
 }
-.Keyboard-Row .Special-Button:hover{ 
+
+.Keyboard-Row .Special-Button:hover {
     font-size: larger;
     cursor: url('/public/Cursor.png') 0 0, auto;
 }

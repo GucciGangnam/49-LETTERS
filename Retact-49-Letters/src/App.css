@@ -13,11 +13,13 @@
 --Secondary-Text: #DBDBDB;
 --Light-Gray: #eaeaea;
 --Gray: #DBDBDB;
+--Red: #ffacac;
 --Orange: #F8CBAD;
 --Yellow: #FFE699;
 --Green: #C5E0B4;
 --Blue: #bdd7ee;
---Pink: #F5CFFF;
+--Pink: #ffb3d3;
+
 
 }
 
@@ -26,9 +28,10 @@
   --Secondary-Text: #DBDBDB;
   --Light-Gray: #eaeaea;
   --Gray: #DBDBDB;
+  --Red: #ffacac;
   --Orange: #F8CBAD;
   --Yellow: #FFE699;
   --Green: #C5E0B4;
   --Blue: #bdd7ee;
-  --Pink: #F5CFFF;
+  --Pink: #ffb3d3;
 }
