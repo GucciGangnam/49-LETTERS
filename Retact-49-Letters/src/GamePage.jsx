@@ -24,19 +24,20 @@ export const GamePage = () => {
             ' ', 'O', ' ', 'I', 'E', ' ', 'Y'])
 
     // COMPLETED WORDS ARRAY 
-    const [completedWords, setCompletedWords] = useState([])
+    const [userStringArray, setUserStringArray] = useState([])
+    const [completedWords, setCompletedWords] = useState([]);
+    console.log(completedWords)
 
     // STRING CHAR COUNT (Start at 0 finish at 48)
     const [stringCharCount, setStringCharCount] = useState(0)
 
     //USER INPUT
     const [userInput, setUserInput] = useState([])
-    console.log("userInput word" + userInput)
 
 
     // LETTER PRESS FUNCTION
     const letterPressFunction = (e) => {
-        if (stringCharCount >= 48) {
+        if (stringCharCount >= 49) {
             return;
         }
         const inputtedLetter = e.target.innerHTML
@@ -63,15 +64,38 @@ export const GamePage = () => {
         if (stringCharCount <= 0) {
             return;
         }
-        setStringCharCount(prevCount => prevCount - 1);
-        setUserInput(prevArr => prevArr.slice(0, -1));
+        if (userInput.length === 0) {
+            console.log('ntg to dlt');
+            setCompletedWords((prevState) => {
+                // Capture the last array before removing it
+                const arrayToRemove = prevState[prevState.length - 1];
+                setUserInput(arrayToRemove);
+                const arrayLength = arrayToRemove.length;
+                setUserStringArray(prevArr => prevArr.slice(0, -arrayLength));
+                // Remove the last array from the previous state
+                return prevState.slice(0, -1);
+            });
+            return;
+        }
+        else {
+            setStringCharCount(prevCount => prevCount - 1);
+            setUserInput(prevArr => prevArr.slice(0, -1));
+        }
     }
 
-    // ENTER KEYPRESS
     const enterKeyPress = () => {
-
-        console.log(wordExists("Hello"))
-    }
+        // Deconstruct userInput into a string
+        const wordToCheck = userInput.join('');
+        if (wordExists(wordToCheck)) {
+            console.log('YES A WORD');
+            setUserStringArray(prevArr => [...prevArr, ...userInput]);
+            console.log(userStringArray);
+            setCompletedWords(prevArr => [...prevArr, userInput]);
+            setUserInput([])
+        } else {
+            console.log('NOT A WORD')
+        }
+    };
 
 
 
@@ -117,62 +141,24 @@ export const GamePage = () => {
 
             <div className="Top-Section">
                 <div className="Top-Section-Left">
-                    <div className="Top-Section-Left-Word-Container">
-                        <div className="Top-Section-Left-Word-Box">
-                            H
+                    {completedWords.map((wordArray, index) => (
+                        <div
+                            key={index}  // Change this line
+                            className="Top-Section-Left-Word-Container">
+                            {wordArray.map((letter, letterIndex) => (
+                                <div
+                                    key={letterIndex}  // Use letterIndex here too
+                                    className="Top-Section-Left-Word-Box">
+                                    {letter}
+                                </div>
+                            ))}
                         </div>
-                        <div className="Top-Section-Left-Word-Box">
-                            E
-                        </div>
-                        <div className="Top-Section-Left-Word-Box">
-                            L
-                        </div>
-                        <div className="Top-Section-Left-Word-Box">
-                            L
-                        </div>
-                        <div className="Top-Section-Left-Word-Box">
-                            O
-                        </div>
-                    </div>
-                    <div className="Top-Section-Left-Word-Container">
-                        <div className="Top-Section-Left-Word-Box">
-                            H
-                        </div>
-                        <div className="Top-Section-Left-Word-Box">
-                            E
-                        </div>
-                        <div className="Top-Section-Left-Word-Box">
-                            L
-                        </div>
-                        <div className="Top-Section-Left-Word-Box">
-                            L
-                        </div>
-                        <div className="Top-Section-Left-Word-Box">
-                            O
-                        </div>
-                    </div>
-                    <div className="Top-Section-Left-Word-Container">
-                        <div className="Top-Section-Left-Word-Box">
-                            H
-                        </div>
-                        <div className="Top-Section-Left-Word-Box">
-                            E
-                        </div>
-                        <div className="Top-Section-Left-Word-Box">
-                            L
-                        </div>
-                        <div className="Top-Section-Left-Word-Box">
-                            L
-                        </div>
-                        <div className="Top-Section-Left-Word-Box">
-                            O
-                        </div>
-                    </div>
-
+                    ))}
                 </div>
+
                 <div className="Top-Section-Right">
                     <div className="Letter-Count">
-                        17
+                        {userStringArray.length}
                     </div>
                 </div>
             </div>
