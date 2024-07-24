@@ -130,15 +130,32 @@
 
 
 /* STRING SECTION */
+
+.Half-Square-Visible{ 
+    background-color: var(--Light-Gray);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 10px;
+    height: 50px;
+}
+
+.Half-Square-Invisible{ 
+    background-color: none;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 10px;
+    height: 50px;
+}
+
 .String-Section {
-    /* outline: 1px solid black; */
+    outline: 1px solid black;
     display: flex;
     align-items: center;
-    gap: 5px;
-    justify-content: space-between;
+    gap: 10px;
+    justify-content: start;
     width: 90vw;
     max-width: 1000px;
-
+    overflow-x: scroll;
 }
 
 .String-Section-Current-Letter-Box-Border {
@@ -161,6 +178,7 @@
     justify-content: center;
     align-items: center;
     font-size: 3rem;
+    /* margin-right: 50px; */
 }
 
 .String-Section-Letter-Box {
@@ -171,6 +189,7 @@
     align-items: center;
     width: 50px;
     height: 50px;
+    /* margin-right: 50px; */
 }
 
 
@@ -208,6 +227,7 @@
 }
 
 .Keyboard-Row .Keyboard-Button {
+    border-radius: 5px;
     width: 10%;
     height: 55px;
     background: none;
@@ -225,6 +245,7 @@
 }
 
 .Keyboard-Row .Special-Button {
+    border-radius: 5px;
     width: 15%;
     height: 55px;
     border: 1px solid rgb(214, 214, 214);
@@ -237,3 +258,7 @@
     font-size: larger;
     cursor: url('/public/Cursor.png') 0 0, auto;
 }
+
+
+
+/* // TEST AREA // */
