@@ -6,7 +6,17 @@ import "./LandingPage.css"
 
 
 // COMPONENT 
-export const LandingPage = () => {
+export const LandingPage = ({todayDate, setGameState}) => {
+    // LOGIC
+
+    // Handle Start game 
+    const handleStartGame = () => { 
+        setGameState('Play')
+    }
+
+
+
+    // RETURN
     return (
         <div className="LandingPage">
             <div className="Title">
@@ -39,9 +49,10 @@ export const LandingPage = () => {
                 </div>
             </div>
             <div className="Today-Date">
-                Monday 1st Janurary 2024
+            Today {todayDate}
             </div>
-            <div className="Play-Container">
+            <div className="Play-Container"
+            onClick={handleStartGame}>
                 <div className="Play-Container-Box">
                     P
                 </div>
@@ -55,6 +66,34 @@ export const LandingPage = () => {
                     Y
                 </div>
             </div>
+
+            {/* <div className="Practice-Container"
+            onClick={handleStartGame}>
+                <div className="Practice-Container-Box">
+                    P
+                </div>
+                <div className="Practice-Container-Box">
+                    R
+                </div>
+                <div className="Practice-Container-Box">
+                    A
+                </div>
+                <div className="Practice-Container-Box">
+                    C
+                </div>
+                <div className="Practice-Container-Box">
+                    T
+                </div>
+                <div className="Practice-Container-Box">
+                    I
+                </div>
+                <div className="Practice-Container-Box">
+                    C
+                </div>
+                <div className="Practice-Container-Box">
+                    E
+                </div>
+            </div> */}
 
             <div className="How-To-Play-Container">
                 <div className="How-To-Play-Container-Box">

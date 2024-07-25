@@ -3,11 +3,22 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors = require('cors');
+require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+// Define CORS options
+const corsOptions = {
+  origin: process.env.FRONT_END_URL,
+  methods: 'GET,POST',
+  credentials: true,
+  optionsSuccessStatus: 204
+};
+// Enable CORS with options
+app.use(cors(corsOptions));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
