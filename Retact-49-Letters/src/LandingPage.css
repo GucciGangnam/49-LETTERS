@@ -8,11 +8,17 @@
 
 /* TITLE */
 .Title{
-    width: 95vw;
+    width: fit-content;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     padding: 10px;
     gap: 5px;
+    margin-top: 10px;
+}
+
+.Title:hover{ 
+    background-color: var(--Light-Gray);
 }
 
 .Title-Box-Black{
@@ -40,6 +46,93 @@
     align-items: center;
     text-align: center;
 }
+
+/* DATE SELECTOR */
+.Date-Selector{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.Date-Selector-Date-Container{ 
+    outline: 1px solid black;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 30px;
+}
+
+.Date-Selector-Date-Animate-Left{ 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 200px;
+    margin-right: 200px;
+    /* background-color: red; */
+    animation: slideInLeft 1s ease-out forwards;
+}
+
+@keyframes slideInLeft {
+    from {
+        margin-right: 200px;
+    }
+    to {
+        margin-right: 0px;
+    }
+}
+
+.Date-Selector-Date-Animate-Right{ 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 200px;
+    margin-left: 200px;
+    /* background-color: red; */
+    animation: slideInRight 1s ease-out forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        margin-left: 200px;
+    }
+    to {
+        margin-left: 0px;
+    }
+}
+
+.Back-One-Day-Button{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: 1px solid black;
+    border-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.Back-One-Day-Button:hover{ 
+    background-color: var(--Green);
+}
+
+.Forward-One-Day-Button{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: 1px solid black;
+    border-radius: 5px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.Forward-One-Day-Button:hover{ 
+    background-color: var(--Green);
+}
+
 /* PLAY BUTTON */
 .Play-Container{
     display: flex;
@@ -113,4 +206,39 @@ background-color: black;
 }
 
 
+/* LEADER BOARD  */
 
+.Leaderboard-Container{
+    display: flex;
+    gap: 5px;
+    outline: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.Leaderboard-Title-Container{
+    outline: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+
+    gap: 5px;
+    padding: 5px;
+}
+
+.Leaderboard-Title-Container:hover{ 
+    background-color: var(--Blue);
+}
+
+.leaderboard-Title-Box{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--Blue);
+    border-radius: 5px;
+
+}

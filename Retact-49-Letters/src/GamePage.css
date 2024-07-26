@@ -20,6 +20,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: end;
     overflow-y: scroll;
 }
 
@@ -30,19 +31,9 @@
     padding: 2.5px;
 }
 
-.Top-Section-Left-Word-Box-Green {
-    background-color: var(--Green);
-    width: 30px;
-    max-height: 30px;
-    max-width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-}
-.Top-Section-Left-Word-Box-Gold {
-    background: linear-gradient(0deg, #DAA520, #FFD700, #DAA520, #FFD700);
+.Top-Section-Left-Word-Box-Bronze {
+    background: white;
+    outline: 1px solid black;
     background-size: 150% 150%;
     width: 30px;
     max-height: 30px;
@@ -52,16 +43,35 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    animation: rotateGradient 5s infinite;
 }
 
-@keyframes rotateGradient {
-    0% {
-        background: linear-gradient(0deg, #DAA520, #FFD700, #DAA520, #FFD700);
-    }
-    100% {
-        background: linear-gradient(180deg, #DAA520, #FFD700, #DAA520, #FFD700);
-    }
+.Top-Section-Left-Word-Box-Silver {
+
+    background: linear-gradient(40deg, #ffffff, #848484, #e3e3e3, #c3c3c3);
+    background-size: 150% 150%;
+    width: 30px;
+    max-height: 30px;
+    max-width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+
+.Top-Section-Left-Word-Box-Gold {
+    background: linear-gradient(40deg, #ffb700, #face1c, #fdf3d7, #e8e821);
+    background-size: 150% 150%;
+    width: 30px;
+    max-height: 30px;
+    max-width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    animation: rotateGradient 10s
 }
 
 .Top-Section-Left-Word-Box-Black {
@@ -339,4 +349,60 @@ top: 3px;
 
 
 
-/* // TEST AREA // */
+/* GAME OVER  */
+
+.Score-Indicator-Container{
+    outline: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    min-width: 300px;
+    padding: 5px;
+
+}
+.Score-Indicator-White{
+    outline: 1px solid black;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: white;
+
+}
+.Score-Indicator-Silver{
+
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background: linear-gradient(40deg, #ffffff, #848484, #e3e3e3, #c3c3c3);
+
+}
+.Score-Indicator-Gold{
+
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background: linear-gradient(40deg, #ffb700, #face1c, #fdf3d7, #e8e821);
+
+}
+
+.GamePage input{ 
+    padding: 10px;
+    width: 300px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--Green);
+}
+
+.GamePage input:focus{ 
+    outline: 2px solid var(--Orange);
+}
+

@@ -18,42 +18,48 @@ import { LoadingScreen } from './LoadingScreen'
 function App() {
   // LOGIC
   const [gameState, setGameState] = useState('Landing')
+  const [gameBeingPlayed, setGameBeingPlayed] = useState(null)
+
 
   const [loading, setLoading] = useState(true);
   const [serverIssue, setServerIssue] = useState(false);
 
-  const [todayDate, setTodayDate] = useState();
+  const [allGames, setAllGames] = useState();
   // UE to fetch todays date on mount
   useEffect(() => {
-    fetchTodaysDate();
+    fetchAllGames();
   }, [])
   // Function to fetch todays date
-  const fetchTodaysDate = async () => {
+  const fetchAllGames = async () => {
     setLoading(true)
     try {
       const backEndURL = import.meta.env.VITE_BACKEND_URL
-      const response = await fetch(`${backEndURL}/gettodaydate`, {
+      const response = await fetch(`${backEndURL}/getallgames`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         }
       });
       if (!response.ok) {
-        setLoading(false)
+        setTimeout(() => {
+          setLoading(false)
+        }, 1500)
         setServerIssue(true);
         console.log("response not ok")
         throw new Error('Network response was not ok');
       }
       const result = await response.json();
+      setAllGames(result.allGamesOBJ)
+      console.log(result.allGamesOBJ)
       setTimeout(() => {
         setLoading(false)
       }, 1500)
-
       console.log("response yes ok")
-      console.log(result.Date)
-      setTodayDate(result.Date)
+
     } catch (error) {
-      setLoading(false)
+      setTimeout(() => {
+        setLoading(false)
+      }, 1500)
       setServerIssue(true);
       console.error(error)
     }
@@ -73,10 +79,10 @@ function App() {
       ) : (
         <>
           {gameState === 'Landing' && (
-            <LandingPage todayDate={todayDate} setGameState={setGameState}/>
+            <LandingPage setGameState={setGameState} allGames={allGames} setGameBeingPlayed={setGameBeingPlayed}/>
           )}
           {gameState === 'Play' && (
-            <GamePage todayDate={todayDate} setGameState={setGameState} />
+            <GamePage setGameState={setGameState} allGames={allGames} gameBeingPlayed={gameBeingPlayed} />
           )}
         </>
       )}
