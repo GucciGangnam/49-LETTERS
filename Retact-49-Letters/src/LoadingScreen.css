@@ -37,7 +37,8 @@
         background-color: var(--Green);
     }
     100% {
-        background: linear-gradient(0deg, #DAA520, #FFD700, #DAA520, #FFD700);
+        background: black;
+        color: white;
         background-size: 150% 150%;
     }
 }

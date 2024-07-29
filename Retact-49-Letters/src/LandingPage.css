@@ -1,14 +1,16 @@
-.LandingPage{ 
+.LandingPage {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     padding-bottom: 10px;
+    min-height: 100vh;
 }
 
 /* TITLE */
-.Title{
+.Title {
     width: fit-content;
+    max-width: 95%;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -17,11 +19,11 @@
     margin-top: 10px;
 }
 
-.Title:hover{ 
+.Title:hover {
     background-color: var(--Light-Gray);
 }
 
-.Title-Box-Black{
+.Title-Box-Black {
     outline: 1px solid black;
     width: 40px;
     height: 40px;
@@ -35,7 +37,7 @@
     font-weight: bolder;
 }
 
-.Title-Box-White{
+.Title-Box-White {
     outline: 1px solid black;
     width: 40px;
     height: 40px;
@@ -48,14 +50,14 @@
 }
 
 /* DATE SELECTOR */
-.Date-Selector{
+.Date-Selector {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
 }
 
-.Date-Selector-Date-Container{ 
+.Date-Selector-Date-Container {
     outline: 1px solid black;
     width: 200px;
     display: flex;
@@ -65,7 +67,7 @@
     height: 30px;
 }
 
-.Date-Selector-Date-Animate-Left{ 
+.Date-Selector-Date-Animate-Left {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,12 +81,13 @@
     from {
         margin-right: 200px;
     }
+
     to {
         margin-right: 0px;
     }
 }
 
-.Date-Selector-Date-Animate-Right{ 
+.Date-Selector-Date-Animate-Right {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,12 +101,13 @@
     from {
         margin-left: 200px;
     }
+
     to {
         margin-left: 0px;
     }
 }
 
-.Back-One-Day-Button{
+.Back-One-Day-Button {
     width: 30px;
     height: 30px;
     display: flex;
@@ -114,11 +118,12 @@
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
 }
-.Back-One-Day-Button:hover{ 
+
+.Back-One-Day-Button:hover {
     background-color: var(--Green);
 }
 
-.Forward-One-Day-Button{
+.Forward-One-Day-Button {
     width: 30px;
     height: 30px;
     display: flex;
@@ -129,23 +134,26 @@
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
 }
-.Forward-One-Day-Button:hover{ 
+
+.Forward-One-Day-Button:hover {
     background-color: var(--Green);
 }
 
 /* PLAY BUTTON */
-.Play-Container{
+.Play-Container {
     display: flex;
     gap: 5px;
-    outline: 1px solid black;
+    /* outline: 1px solid black; */
     padding: 5px;
     border-radius: 10px;
+    background-color: rgb(255, 240, 231);
 }
-.Play-Container:hover{ 
+
+.Play-Container:hover {
     background: var(--Orange);
 }
 
-.Play-Container-Box{
+.Play-Container-Box {
     width: 40px;
     height: 40px;
     display: flex;
@@ -183,18 +191,20 @@ background-color: black;
 
 
 /* HOW TO PLAY BUTTON */
-.How-To-Play-Container{
+.How-To-Play-Container {
     display: flex;
     gap: 5px;
-    outline: 1px solid black;
+    max-width: 95%;
+    background: rgb(229, 238, 229);
     padding: 5px;
     border-radius: 10px;
 }
-.How-To-Play-Container:hover{ 
+
+.How-To-Play-Container:hover {
     background: var(--Green);
 }
 
-.How-To-Play-Container-Box{
+.How-To-Play-Container-Box {
     width: 40px;
     height: 40px;
     display: flex;
@@ -208,19 +218,23 @@ background-color: black;
 
 /* LEADER BOARD  */
 
-.Leaderboard-Container{
+.Leaderboard-Container {
+    max-width: 95%;
     display: flex;
-    gap: 5px;
-    outline: 1px solid black;
-    padding: 10px;
+    gap: 10px;
+    background: var(--Light-Gray);
+    /* padding: 10px; */
     border-radius: 10px;
     flex-direction: column;
     align-items: center;
+    padding: 10px;
+    flex: 1;
 
 }
 
-.Leaderboard-Title-Container{
-    outline: 1px solid black;
+.Leaderboard-Title-Container {
+    /* outline: 1px solid black; */
+    max-width: 100%;
     border-radius: 10px;
     display: flex;
 
@@ -228,17 +242,88 @@ background-color: black;
     padding: 5px;
 }
 
-.Leaderboard-Title-Container:hover{ 
-    background-color: var(--Blue);
+.Leaderboard-Title-Container:hover {
+    /* background-color: var(--Orange); */
 }
 
-.leaderboard-Title-Box{
+.leaderboard-Title-Box {
     width: 32px;
     height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--Blue);
+    outline: 1px solid black;
     border-radius: 5px;
 
+}
+
+.Highscore-Card {
+    outline: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 300px;
+    max-width: 90%;
+    background-color:var(--Light-Gray);
+    position: relative;
+}
+
+.Highscore-Index{ 
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.Highscore-Name {
+    font-weight: bold;
+}
+
+.Highscore-Plug {}
+
+.Highscore-Score {
+    font-weight: bold;
+
+}
+
+.Highscore-Longest-Word {}
+
+.Highscore-Points-Indicator {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.Highscore-Points-Indicator .White {
+    width: 30px;
+    height: 30px;
+    outline: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+
+}
+
+.Highscore-Points-Indicator .Green {
+    width: 30px;
+    height: 30px;
+    background-color: var(--Green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.Highscore-Points-Indicator .Black {
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
 }

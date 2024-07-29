@@ -14,7 +14,13 @@ import { LoadingScreen } from "./LoadingScreen";
 export const GamePage = ({ setGameState, gameBeingPlayed }) => {
 
     // LOGIC 
-    const [gameFinished, setGameFinished] = useState(false); // SET ME TO FLASE!!!!!
+    const [gameFinished, setGameFinished] = useState(false);
+    // GAME OVER SECTION 
+    const [whiteCount, setWhiteCount] = useState(0);
+    const [silverCount, setSilverCount] = useState(0);
+    const [goldCount, setGoldCount] = useState(0);
+
+
 
     // FETCH GENERATED STRING BY DATA
     const [loading, setLoading] = useState(false);
@@ -123,12 +129,15 @@ export const GamePage = ({ setGameState, gameBeingPlayed }) => {
 
         // Set up 
         window.addEventListener('keydown', handleKeyDown);
+        if (gameFinished) {
+            window.removeEventListener('keydown', handleKeyDown);
+        }
 
         // Clean up
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, [generatedString, stringCharCount, userInput, userStringArray, userRawString]);
+    }, [generatedString, stringCharCount, userInput, userStringArray, userRawString, gameFinished]);
 
 
     // ON SCREEN LETTER PRESS FUNCTION
@@ -207,11 +216,96 @@ export const GamePage = ({ setGameState, gameBeingPlayed }) => {
         setGameState("Landing")
     }
 
+    // ON GAME FINISH 
+    useEffect(() => {
+        if (gameFinished) {
+            console.log('Game finished')
 
+            for (let i = 0; i < completedWords.length; i++) {
+                if (completedWords[i].length < 7) {
+                    console.log('less than 7');
+                    for (let j = 0; j < completedWords[i].length; j++) {
+                        setWhiteCount(prev => prev + 1)
+                    }
+                }
+                if (completedWords[i].length >= 7 && completedWords[i].length <= 9) {
+                    console.log('lbetween 7 and 9');
+                    for (let j = 0; j < completedWords[i].length; j++) {
+                        setSilverCount(prev => prev + 3)
+                    }
+                }
+                if (completedWords[i].length > 9) {
+                    console.log('more than 9');
+                    for (let j = 0; j < completedWords[i].length; j++) {
+                        setGoldCount(prev => prev + 5)
+                    }
+                }
+            }
+        }
+    }, [gameFinished, completedWords])
 
+    const [playerName, setPlayerName] = useState("");
+    const [playerPlug, setPlayerPlug] = useState("");
 
+    const handleChangePlayerName = (e) => {
+        const value = e.target.value;
+        const alphanumericValue = value.replace(/[^a-zA-Z0-9]/g, '');
+        setPlayerName(alphanumericValue)
+    }
 
+    const handleChangePlayerPlug = (e) => {
+        const value = e.target.value;
+        const alphanumericValue = value.replace(/[^a-zA-Z0-9 ]/g, '');
+        setPlayerPlug(alphanumericValue)
+    }
 
+    // Hndle submit score 
+    const handleSubmitScore = async (e) => {
+        e.preventDefault();
+        console.log("make post fetch")
+        setLoading(true);
+        try {
+            const backEndURL = import.meta.env.VITE_BACKEND_URL;
+            const data = {
+                gameBeingPlayed: gameBeingPlayed,
+                completedWords: completedWords,
+                userRawString: userRawString,
+                playerName: playerName,
+                playerPlug: playerPlug
+            };
+            console.log(data)
+
+            const response = await fetch(`${backEndURL}/addtoleaderboard`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+            if (!response.ok) {
+                setTimeout(() => {
+                    setLoading(false);
+                }, 1500);
+                console.log("response not ok");
+                throw new Error('Network response was not ok');
+            }
+            const result = await response.json();
+            console.log(result)
+
+            setTimeout(() => {
+                setLoading(false);
+                setGameState("Landing");
+            }, 1500);
+            console.log("response yes ok");
+
+        } catch (error) {
+            setTimeout(() => {
+                setLoading(false);
+            }, 1500);
+            console.error(error);
+        }
+
+    }
 
 
     // RETURN
@@ -304,23 +398,46 @@ export const GamePage = ({ setGameState, gameBeingPlayed }) => {
 
 
                     {gameFinished ? (
-                        <>
-                            Take your spot on the leaderboard
+                        <form
+                            onSubmit={handleSubmitScore}
+                            className="Score-Card">
                             <div className="Score-Indicator-Container">
                                 <div className="Score-Indicator-White">
-                                    x
+                                    {whiteCount}
                                 </div>
                                 <div className="Score-Indicator-Silver">
-                                    x
+                                    {silverCount}
                                 </div>
                                 <div className="Score-Indicator-Gold">
-                                    x
+                                    {goldCount}
                                 </div>
                             </div>
-                            <input placeholder="Name" />
-                            <input placeholder="Plug" />
 
-                        </>
+                            <div className="Score">
+                                Score : {whiteCount + silverCount + goldCount}
+                            </div>
+
+                            <input
+                                value={playerName}
+                                onChange={handleChangePlayerName}
+                                placeholder="Nickname"
+                                minLength={1}
+                                maxLength={15}
+                                required />
+
+                            <input onChange={handleChangePlayerPlug}
+                                value={playerPlug}
+                                placeholder="Plug a message"
+                                maxLength={40} />
+
+
+
+                            <button
+                                type="submit"
+                                className="Submit-Button"
+                            >Submit</button>
+
+                        </form>
                     ) :
                         (
                             <>

@@ -29,41 +29,48 @@ function App() {
   useEffect(() => {
     fetchAllGames();
   }, [])
-  // Function to fetch todays date
-  const fetchAllGames = async () => {
-    setLoading(true)
-    try {
-      const backEndURL = import.meta.env.VITE_BACKEND_URL
-      const response = await fetch(`${backEndURL}/getallgames`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-      if (!response.ok) {
-        setTimeout(() => {
-          setLoading(false)
-        }, 1500)
-        setServerIssue(true);
-        console.log("response not ok")
-        throw new Error('Network response was not ok');
+// Function to fetch all games
+const fetchAllGames = async () => {
+  setLoading(true);
+  try {
+    const backEndURL = import.meta.env.VITE_BACKEND_URL;
+    const response = await fetch(`${backEndURL}/getallgames`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
       }
-      const result = await response.json();
-      setAllGames(result.allGamesOBJ)
-      console.log(result.allGamesOBJ)
+    });
+    if (!response.ok) {
       setTimeout(() => {
-        setLoading(false)
-      }, 1500)
-      console.log("response yes ok")
-
-    } catch (error) {
-      setTimeout(() => {
-        setLoading(false)
-      }, 1500)
+        setLoading(false);
+      }, 1500);
       setServerIssue(true);
-      console.error(error)
+      console.log("response not ok");
+      throw new Error('Network response was not ok');
     }
+    const result = await response.json();
+
+    // Sort the games by date in descending order
+    const sortedGames = result.allGamesOBJ.sort((a, b) => {
+      return new Date(b.DATE) - new Date(a.DATE);
+    });
+
+    setAllGames(sortedGames);
+    console.log(sortedGames);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+    console.log("response yes ok");
+
+  } catch (error) {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+    setServerIssue(true);
+    console.error(error);
   }
+};
 
 
 

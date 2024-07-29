@@ -7,6 +7,8 @@ const cors = require('cors');
 const cron = require('node-cron');
 const generateString = require('./utils/generateString');
 require('dotenv').config();
+// Shemes
+const Game = require("./models/game")
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -15,7 +17,7 @@ var app = express();
 // Define CORS options
 const corsOptions = {
   origin: process.env.FRONT_END_URL,
-  methods: 'GET,POST',
+  methods: 'GET,POST,PUT',
   credentials: true,
   optionsSuccessStatus: 204
 };
@@ -23,11 +25,42 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Schedule the task to run every day at 00:00:01 UTC
-cron.schedule('1 0 * * *', () => {
-  generateString();
-}, {
-  timezone: "UTC"
-});
+// cron.schedule('1 0 * * *', () => {
+//   const today = new Date();
+//   generateString(today);
+// }, {
+//   timezone: "UTC"
+// });
+
+
+// WHEN TEH SERVER TURN ON, RUN GERATE NEW STRING FOR EVERY DAY UNTIL THAT GAME ALREADY EXISTS
+const buildGames = async (date) => {
+  // Convert date to the required format
+  const formattedDate = date.toISOString().split('T')[0];
+  // Check if a game already exists for the given date
+  const game = await Game.findOne({ DATE: formattedDate });
+  if (game) {
+    // If a game exists, do nothing
+    console.log("game already exisists")
+    return;
+  } else {
+    // If no game exists, generate a new string for the current date
+    console.log('building game')
+    generateString(date);
+    // Move to the previous day
+    const previousDate = new Date(date);
+    previousDate.setDate(date.getDate() - 1);
+    // Recursively call buildGames for the previous day
+    buildGames(previousDate);
+  }
+}
+// Call buildGames with today's date when the server starts
+const startDate = new Date();
+buildGames(startDate);
+
+
+
+
 
 
 // SET MONGO CONNECTION //
@@ -67,12 +100,12 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

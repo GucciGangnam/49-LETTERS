@@ -1,10 +1,9 @@
 // utils/generateString.js
 const Game = require('../models/game'); // Adjust the path to your Game model
 
-const generateString = async () => {
+const generateString = async (today) => {
     try {
         // Get today's date
-        const today = new Date();
         const todayDate = today.toISOString().split('T')[0];
         console.log(todayDate);
 

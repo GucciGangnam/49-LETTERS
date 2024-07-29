@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    padding-bottom: 10px;
 }
 
 /* TOP SECTION */
@@ -47,7 +48,7 @@
 
 .Top-Section-Left-Word-Box-Silver {
 
-    background: linear-gradient(40deg, #ffffff, #848484, #e3e3e3, #c3c3c3);
+    background: var(--Green);
     background-size: 150% 150%;
     width: 30px;
     max-height: 30px;
@@ -61,7 +62,8 @@
 
 
 .Top-Section-Left-Word-Box-Gold {
-    background: linear-gradient(40deg, #ffb700, #face1c, #fdf3d7, #e8e821);
+    background: black;
+    color: white;
     background-size: 150% 150%;
     width: 30px;
     max-height: 30px;
@@ -351,8 +353,20 @@ top: 3px;
 
 /* GAME OVER  */
 
-.Score-Indicator-Container{
+.Score-Card{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    padding-top: 20px;
+    padding-Bottom: 20px;
     outline: 1px solid black;
+    border-radius: 10px;
+}
+
+.Score-Indicator-Container{
+
     border-radius: 10px;
     display: flex;
     justify-content: space-evenly;
@@ -379,7 +393,7 @@ top: 3px;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    background: linear-gradient(40deg, #ffffff, #848484, #e3e3e3, #c3c3c3);
+    background: var(--Green)
 
 }
 .Score-Indicator-Gold{
@@ -390,19 +404,39 @@ top: 3px;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    background: linear-gradient(40deg, #ffb700, #face1c, #fdf3d7, #e8e821);
+    background: black;
+    color: white;
 
 }
 
 .GamePage input{ 
     padding: 10px;
-    width: 300px;
+    width: 80%;
     border-radius: 10px;
     border: none;
-    background-color: var(--Green);
+    outline: 1px solid black;
+    font-size: 16px;
 }
 
 .GamePage input:focus{ 
-    outline: 2px solid var(--Orange);
+    background-color: var(--Green);
+}
+
+.Score-Card button { 
+    outline: 1px solid black;
+    background-color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    
+}
+
+.Score-Card button:hover{ 
+    background-color: var(--Green);
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    color: white;
+    cursor: url('/Cursor.png') 0 0, auto;
 }
 

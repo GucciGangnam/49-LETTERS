@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const validator = require('validator');
 // Shemes
 const Game = require("../models/game")
 
@@ -22,14 +23,97 @@ router.get('/getallgames', async function (req, res, next) {
   }
 });
 
+// ADD TO LEADERBOARD 
+router.put('/addtoleaderboard', async function (req, res, next) {
+  try {
+    const { gameBeingPlayed, completedWords, userRawString, playerName, playerPlug } = req.body;
 
-// LEGACY DONT USE 
+    // Sanitize and validate playerName
+    let sanitizedPlayerName = validator.trim(playerName);
+    sanitizedPlayerName = validator.escape(sanitizedPlayerName);
+
+    if (!validator.isLength(sanitizedPlayerName, { min: 1, max: 15 })) {
+      return res.status(400).json({ error: 'playerName must be between 1 and 15 characters long' });
+    }
+
+    if (!/^[a-zA-Z0-9]+$/.test(sanitizedPlayerName)) {
+      return res.status(400).json({ error: 'playerName can only contain alphanumeric characters' });
+    }
+
+    // Sanitize and validate playerPlug
+    let sanitizedPlayerPlug = validator.trim(playerPlug);
+    sanitizedPlayerPlug = validator.escape(sanitizedPlayerPlug);
+
+    if (!validator.isLength(sanitizedPlayerPlug, { max: 40 })) {
+      return res.status(400).json({ error: 'playerPlug can be a maximum of 40 characters long' });
+    }
+
+    if (/[\"\'\?\<\>\&\`\;\:]/.test(sanitizedPlayerPlug)) {
+      return res.status(400).json({ error: 'playerPlug cannot contain quotation marks, question marks, or other syntax characters' });
+    }
+
+    // Get game object
+    const originalGameOBJ = await Game.findOne({ _id: gameBeingPlayed._id });
+    if (!originalGameOBJ) {
+      return res.status(400).json({ error: "That game doesn't exist" });
+    }
+
+    // Validate game data
+    for (let i = 0; i < originalGameOBJ.STRINGARRAY.length; i++) {
+      if (originalGameOBJ.STRINGARRAY[i] === "_") continue;
+      if (originalGameOBJ.STRINGARRAY[i] !== userRawString[i]) {
+        return res.status(400).json({ msg: "String has been tampered with" });
+      }
+    }
+
+    const allChars = completedWords.flat();
+    for (let i = 0; i < originalGameOBJ.STRINGARRAY.length; i++) {
+      if (originalGameOBJ.STRINGARRAY[i] === "_") continue;
+      if (originalGameOBJ.STRINGARRAY[i] !== allChars[i]) {
+        return res.status(400).json({ msg: "String has been tampered with" });
+      }
+    }
+
+    // Calculate score
+    let score = 0;
+    for (let i = 0; i < completedWords.length; i++) {
+      const wordLength = completedWords[i].length;
+      if (wordLength < 7) {
+        score += wordLength;
+      } else if (wordLength >= 7 && wordLength <= 9) {
+        score += wordLength * 3;
+      } else if (wordLength > 9) {
+        score += wordLength * 5;
+      }
+    }
+
+    // Add a new score to the leaderboard
+    const newScore = {
+      NAME: sanitizedPlayerName,
+      PLUG: sanitizedPlayerPlug,
+      SCORE: score,
+      COMPLETEDWORDS: completedWords
+    };
+
+    originalGameOBJ.SCORES.push(newScore);
+
+    await originalGameOBJ.save();
+
+    return res.status(200).json({ msg: "OK" });
+
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+// LEGACY DONT USE - Manually create new game
 // router.post('/generatenewstring', async (req, res, next) => {
 //   try {
 //     // Get today's date
 //     const today = new Date();
 //     // const todayDate = today.toISOString().split('T')[0];
-//     const todayDate = '2024-07-07'
+//     const todayDate = '2024-07-29'
 //     console.log(todayDate);
 
 //     const lastChar = todayDate.charAt(todayDate.length - 1);

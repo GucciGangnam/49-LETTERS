@@ -10,9 +10,9 @@ import { useState } from "react"
 // COMPONENT 
 export const LandingPage = ({ setGameState, allGames, setGameBeingPlayed }) => {
     // LOGIC
-// ANIMATIONS 
-const [animateLeft, setAnimateLeft] = useState(false)
-const [animateRight, setAnimateRight] = useState(true)
+    // ANIMATIONS 
+    const [animateLeft, setAnimateLeft] = useState(false)
+    const [animateRight, setAnimateRight] = useState(true)
 
     const [gameIndex, setGameIndex] = useState(0)
 
@@ -22,13 +22,13 @@ const [animateRight, setAnimateRight] = useState(true)
             return;
         } else {
             setAnimateRight(false)
-            setTimeout(() => { 
+            setTimeout(() => {
                 setAnimateLeft(false)
-            },100)
+            }, 100)
             setAnimateRight(false)
-            setTimeout(() => { 
+            setTimeout(() => {
                 setAnimateLeft(true)
-            },150)
+            }, 150)
 
             setGameIndex(prev => prev + 1)
         }
@@ -40,13 +40,13 @@ const [animateRight, setAnimateRight] = useState(true)
             return;
         } else {
             setAnimateLeft(false)
-            setTimeout(() => { 
+            setTimeout(() => {
                 setAnimateRight(false)
-            },100)
+            }, 100)
 
-            setTimeout(() => { 
+            setTimeout(() => {
                 setAnimateRight(true)
-            },150)
+            }, 150)
             setGameIndex(prev => prev - 1)
         }
     }
@@ -208,9 +208,70 @@ const [animateRight, setAnimateRight] = useState(true)
                         D
                     </div>
                 </div>
-                <div>Bubble</div>
-            </div>
 
+
+
+                {allGames[gameIndex].SCORES[0] ? (
+                    <>
+                        {allGames[gameIndex].SCORES.map((score, index) => (
+                            <div
+                                key={index}
+                                className="Highscore-Card">
+                                <div className="Highscore-Index">
+                                    {index + 1}
+                                </div>
+                                <div className="Highscore-Name">
+                                    {score.NAME}
+                                </div>
+                                <div className="Highscore-Plug">
+                                    "{score.PLUG}"
+                                </div>
+                                <div className="Highscore-Score">
+                                    Score:{score.SCORE}
+                                </div>
+                                <div className="Highscore-Longest-Word">
+                                    Longest Word: {
+                                        score.COMPLETEDWORDS.reduce((longest, word) => {
+                                            return word.length > longest ? word.length : longest;
+                                        }, 0)
+                                    }
+                                </div>
+                                <div className="Highscore-Points-Indicator">
+                                    <div className="White">
+                                        {
+                                            score.COMPLETEDWORDS.reduce((total, word) => {
+                                                return word.length < 7 ? total + word.length : total;
+                                            }, 0)
+                                        }
+                                    </div>
+                                    <div className="Green">
+                                        {
+                                            score.COMPLETEDWORDS.reduce((total, word) => {
+                                                return word.length >= 7 && word.length <= 9
+                                                    ? total + (word.length * 3)
+                                                    : total;
+                                            }, 0)
+                                        }
+                                    </div>
+                                    <div className="Black">
+                                        {
+                                            score.COMPLETEDWORDS.reduce((total, word) => {
+                                                return word.length > 9 ? total + (word.length * 5) : total;
+                                            }, 0)
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+                        ))}
+                    </>
+
+                ) : (
+                    <>NO scores set for this date yet.</>
+                )}
+
+
+            </div>
 
         </div>
     )
