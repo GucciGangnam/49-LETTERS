@@ -258,7 +258,7 @@ background-color: black;
 }
 
 .Highscore-Card {
-    outline: 1px solid black;
+    /* outline: 1px solid black; */
     padding: 10px;
     border-radius: 10px;
     display: flex;
@@ -267,7 +267,7 @@ background-color: black;
     gap: 5px;
     width: 300px;
     max-width: 90%;
-    background-color:var(--Light-Gray);
+    background-color: white;
     position: relative;
 }
 

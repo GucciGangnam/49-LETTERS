@@ -33,30 +33,31 @@ app.use(cors(corsOptions));
 // });
 
 
-// WHEN TEH SERVER TURN ON, RUN GERATE NEW STRING FOR EVERY DAY UNTIL THAT GAME ALREADY EXISTS
-const buildGames = async (date) => {
-  // Convert date to the required format
-  const formattedDate = date.toISOString().split('T')[0];
-  // Check if a game already exists for the given date
-  const game = await Game.findOne({ DATE: formattedDate });
-  if (game) {
-    // If a game exists, do nothing
-    console.log("game already exisists")
-    return;
-  } else {
-    // If no game exists, generate a new string for the current date
-    console.log('building game')
-    generateString(date);
-    // Move to the previous day
-    const previousDate = new Date(date);
-    previousDate.setDate(date.getDate() - 1);
-    // Recursively call buildGames for the previous day
-    buildGames(previousDate);
-  }
-}
-// Call buildGames with today's date when the server starts
-const startDate = new Date();
-buildGames(startDate);
+// // WHEN TEH SERVER TURN ON, RUN GERATE NEW STRING FOR EVERY DAY UNTIL THAT GAME ALREADY EXISTS
+// const buildGames = async (date) => {
+//   // Convert date to the required format
+//   const formattedDate = date.toISOString().split('T')[0];
+//   // Check if a game already exists for the given date
+//   const game = await Game.findOne({ DATE: formattedDate });
+//   if (game) {
+//     // If a game exists, do nothing
+//     console.log("game already exisists")
+//     console.log(game)
+//     return;
+//   } else {
+//     // If no game exists, generate a new string for the current date
+//     console.log('building game')
+//     generateString(date);
+//     // Move to the previous day
+//     const previousDate = new Date(date);
+//     previousDate.setDate(date.getDate() - 1);
+//     // Recursively call buildGames for the previous day
+//     buildGames(previousDate);
+//   }
+// }
+// // Call buildGames with today's date when the server starts
+// const startDate = new Date();
+// buildGames(startDate);
 
 
 
