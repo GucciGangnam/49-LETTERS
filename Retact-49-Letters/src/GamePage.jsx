@@ -398,46 +398,52 @@ export const GamePage = ({ setGameState, gameBeingPlayed }) => {
 
 
                     {gameFinished ? (
-                        <form
-                            onSubmit={handleSubmitScore}
-                            className="Score-Card">
-                            <div className="Score-Indicator-Container">
-                                <div className="Score-Indicator-White">
-                                    {whiteCount}
+                        <>
+                            <form
+                                onSubmit={handleSubmitScore}
+                                className="Score-Card">
+                                <div className="Score-Indicator-Container">
+                                    <div className="Score-Indicator-White">
+                                        {whiteCount}
+                                    </div>
+                                    <div className="Score-Indicator-Silver">
+                                        {silverCount}
+                                    </div>
+                                    <div className="Score-Indicator-Gold">
+                                        {goldCount}
+                                    </div>
                                 </div>
-                                <div className="Score-Indicator-Silver">
-                                    {silverCount}
+
+                                <div className="Score">
+                                    Score : {whiteCount + silverCount + goldCount}
                                 </div>
-                                <div className="Score-Indicator-Gold">
-                                    {goldCount}
-                                </div>
-                            </div>
 
-                            <div className="Score">
-                                Score : {whiteCount + silverCount + goldCount}
-                            </div>
+                                <input
+                                    value={playerName}
+                                    onChange={handleChangePlayerName}
+                                    placeholder="Nickname"
+                                    minLength={1}
+                                    maxLength={15}
+                                    required />
 
-                            <input
-                                value={playerName}
-                                onChange={handleChangePlayerName}
-                                placeholder="Nickname"
-                                minLength={1}
-                                maxLength={15}
-                                required />
+                                <input onChange={handleChangePlayerPlug}
+                                    value={playerPlug}
+                                    placeholder="Plug a message"
+                                    maxLength={40} />
 
-                            <input onChange={handleChangePlayerPlug}
-                                value={playerPlug}
-                                placeholder="Plug a message"
-                                maxLength={40} />
+                                <button
+                                    type="submit"
+                                    className="Submit-Button"
+                                >Submit</button>
 
-
+                            </form>
 
                             <button
-                                type="submit"
-                                className="Submit-Button"
-                            >Submit</button>
+                            onClick={handleGoHome}
+                                className="Home-Button">
+                                Home</button>
 
-                        </form>
+                        </>
                     ) :
                         (
                             <>

@@ -213,57 +213,59 @@ export const LandingPage = ({ setGameState, allGames, setGameBeingPlayed }) => {
 
                 {allGames[gameIndex].SCORES[0] ? (
                     <>
-                        {allGames[gameIndex].SCORES.map((score, index) => (
-                            <div
-                                key={index}
-                                className="Highscore-Card">
-                                <div className="Highscore-Index">
-                                    {index + 1}
-                                </div>
-                                <div className="Highscore-Name">
-                                    {score.NAME}
-                                </div>
-                                <div className="Highscore-Plug">
-                                    "{score.PLUG}"
-                                </div>
-                                <div className="Highscore-Score">
-                                    Score:{score.SCORE}
-                                </div>
-                                <div className="Highscore-Longest-Word">
-                                    Longest Word: {
-                                        score.COMPLETEDWORDS.reduce((longest, word) => {
-                                            return word.length > longest ? word.length : longest;
-                                        }, 0)
-                                    }
-                                </div>
-                                <div className="Highscore-Points-Indicator">
-                                    <div className="White">
-                                        {
-                                            score.COMPLETEDWORDS.reduce((total, word) => {
-                                                return word.length < 7 ? total + word.length : total;
+                        {allGames[gameIndex].SCORES
+                            .slice() // Create a copy of the array to avoid mutating the original
+                            .sort((a, b) => b.SCORE - a.SCORE) // Sort by SCORE in descending order
+                            .map((score, index) => (
+                                <div
+                                    key={index}
+                                    className="Highscore-Card">
+                                    <div className="Highscore-Index">
+                                        {index + 1}
+                                    </div>
+                                    <div className="Highscore-Name">
+                                        {score.NAME}
+                                    </div>
+                                    <div className="Highscore-Plug">
+                                        "{score.PLUG}"
+                                    </div>
+                                    <div className="Highscore-Score">
+                                        Score:{score.SCORE}
+                                    </div>
+                                    <div className="Highscore-Longest-Word">
+                                        Longest Word: {
+                                            score.COMPLETEDWORDS.reduce((longest, word) => {
+                                                return word.length > longest ? word.length : longest;
                                             }, 0)
                                         }
                                     </div>
-                                    <div className="Green">
-                                        {
-                                            score.COMPLETEDWORDS.reduce((total, word) => {
-                                                return word.length >= 7 && word.length <= 9
-                                                    ? total + (word.length * 3)
-                                                    : total;
-                                            }, 0)
-                                        }
+                                    <div className="Highscore-Points-Indicator">
+                                        <div className="White">
+                                            {
+                                                score.COMPLETEDWORDS.reduce((total, word) => {
+                                                    return word.length < 7 ? total + word.length : total;
+                                                }, 0)
+                                            }
+                                        </div>
+                                        <div className="Green">
+                                            {
+                                                score.COMPLETEDWORDS.reduce((total, word) => {
+                                                    return word.length >= 7 && word.length <= 9
+                                                        ? total + (word.length * 3)
+                                                        : total;
+                                                }, 0)
+                                            }
+                                        </div>
+                                        <div className="Black">
+                                            {
+                                                score.COMPLETEDWORDS.reduce((total, word) => {
+                                                    return word.length > 9 ? total + (word.length * 5) : total;
+                                                }, 0)
+                                            }
+                                        </div>
                                     </div>
-                                    <div className="Black">
-                                        {
-                                            score.COMPLETEDWORDS.reduce((total, word) => {
-                                                return word.length > 9 ? total + (word.length * 5) : total;
-                                            }, 0)
-                                        }
-                                    </div>
-
                                 </div>
-                            </div>
-                        ))}
+                            ))}
                     </>
 
                 ) : (

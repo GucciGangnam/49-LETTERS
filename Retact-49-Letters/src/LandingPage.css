@@ -205,8 +205,8 @@ background-color: black;
 }
 
 .How-To-Play-Container-Box {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -219,16 +219,18 @@ background-color: black;
 /* LEADER BOARD  */
 
 .Leaderboard-Container {
+    padding-top: 20px;
     max-width: 95%;
     display: flex;
     gap: 10px;
-    background: var(--Light-Gray);
+    /* outline: 1px solid black; */
     /* padding: 10px; */
     border-radius: 10px;
     flex-direction: column;
     align-items: center;
     padding: 10px;
     flex: 1;
+    padding-top: 30px;
 
 }
 
@@ -247,8 +249,8 @@ background-color: black;
 }
 
 .leaderboard-Title-Box {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -265,10 +267,12 @@ background-color: black;
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    width: 300px;
-    max-width: 90%;
-    background-color: white;
+    width: 95%;
+    max-width: 95%;
+    /* background-color: var(--Light-Gray); */
+    outline: 1px solid black;
     position: relative;
+    text-align: center;
 }
 
 .Highscore-Index{ 
@@ -292,7 +296,7 @@ background-color: black;
 
 .Highscore-Points-Indicator {
     display: flex;
-    width: 100%;
+gap: 10px;
     justify-content: space-evenly;
 }
 
@@ -326,4 +330,10 @@ background-color: black;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
+}
+
+
+@media (max-width: 500px) {
+
+
 }

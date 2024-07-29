@@ -4,6 +4,7 @@
     align-items: center;
     gap: 10px;
     padding-bottom: 10px;
+    min-height: 100vh;
 }
 
 /* TOP SECTION */
@@ -178,7 +179,7 @@
 
 /* STRING SECTION */
 
-.Half-Square-Visible{ 
+.Half-Square-Visible {
     /* ORIGINAL */
     /* background-color: var(--Light-Gray);
     border-top-right-radius: 10px;
@@ -192,7 +193,7 @@
     height: 50px;
     border-radius: 10px;
     position: absolute;
-    left: -25px;
+    left: -15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -201,7 +202,7 @@
 
 }
 
-.Half-Square-Invisible{ 
+.Half-Square-Invisible {
     /* background-color: none;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -213,7 +214,7 @@
     height: 50px;
     border-radius: 10px;
     position: absolute;
-    left: -25px;
+    left: -15px;
 
 }
 
@@ -232,16 +233,16 @@
 
 
 .String-Section {
-display: flex;
-align-items: center;
-gap: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
-.Index-Indicator{ 
-position: absolute;
-font-size: 10px;
-left: 5px;
-top: 3px;
+.Index-Indicator {
+    position: absolute;
+    font-size: 10px;
+    left: 5px;
+    top: 3px;
 }
 
 .String-Section-Current-Letter-Box-Border {
@@ -282,6 +283,21 @@ top: 3px;
     /* margin-right: 50px; */
 }
 
+@media (max-width: 500px) {
+    .String-Section-Current-Letter-Box-Border {
+        width: 45px;
+        height: 45px;
+    }
+
+    .String-Section-Current-Letter-Box {
+        font-size: 1rem;
+    }
+
+    .String-Section-Letter-Box {
+        width: 40px;
+        height: 40px;
+    }
+}
 
 /* ADD WORD BTN */
 /* .Add-Word-Button {
@@ -353,7 +369,7 @@ top: 3px;
 
 /* GAME OVER  */
 
-.Score-Card{ 
+.Score-Card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -365,7 +381,7 @@ top: 3px;
     border-radius: 10px;
 }
 
-.Score-Indicator-Container{
+.Score-Indicator-Container {
 
     border-radius: 10px;
     display: flex;
@@ -374,7 +390,8 @@ top: 3px;
     padding: 5px;
 
 }
-.Score-Indicator-White{
+
+.Score-Indicator-White {
     outline: 1px solid black;
     width: 40px;
     height: 40px;
@@ -385,7 +402,8 @@ top: 3px;
     background-color: white;
 
 }
-.Score-Indicator-Silver{
+
+.Score-Indicator-Silver {
 
     width: 40px;
     height: 40px;
@@ -394,9 +412,9 @@ top: 3px;
     align-items: center;
     border-radius: 10px;
     background: var(--Green)
-
 }
-.Score-Indicator-Gold{
+
+.Score-Indicator-Gold {
 
     width: 40px;
     height: 40px;
@@ -409,7 +427,7 @@ top: 3px;
 
 }
 
-.GamePage input{ 
+.GamePage input {
     padding: 10px;
     width: 80%;
     border-radius: 10px;
@@ -418,20 +436,20 @@ top: 3px;
     font-size: 16px;
 }
 
-.GamePage input:focus{ 
+.GamePage input:focus {
     background-color: var(--Green);
 }
 
-.Score-Card button { 
+.Score-Card button {
     outline: 1px solid black;
     background-color: white;
     border: none;
     border-radius: 25px;
     padding: 10px;
-    
+
 }
 
-.Score-Card button:hover{ 
+.Score-Card button:hover {
     background-color: var(--Green);
     border: none;
     border-radius: 25px;
@@ -440,3 +458,18 @@ top: 3px;
     cursor: url('/Cursor.png') 0 0, auto;
 }
 
+.Home-Button{ 
+    outline: 1px solid black;
+    background-color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+}
+.Home-Button:hover{ 
+    background-color: var(--Green);
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    color: white;
+    cursor: url('/Cursor.png') 0 0, auto;
+}
