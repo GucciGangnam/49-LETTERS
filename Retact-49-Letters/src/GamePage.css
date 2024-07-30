@@ -299,21 +299,6 @@
     }
 }
 
-/* ADD WORD BTN */
-/* .Add-Word-Button {
-    outline: 1px solid black;
-    width: 200px;
-    height: 50px;
-    background-color: var(--Green);
-    border: none;
-    color: white;
-    font-size: larger;
-}
-
-.Add-Word-Button{
-    cursor: url('/public/Cursor.png') 0 0, auto;
-} */
-
 
 /* KEYBOARD */
 .Keyboard {
@@ -346,7 +331,7 @@
 .Keyboard-Row .Keyboard-Button:hover {
     background-color: var(--Green);
     font-size: larger;
-    cursor: url('/public/Cursor.png') 0 0, auto;
+    cursor: url('/Cursor.png') 0 0, auto;
 
 }
 
@@ -362,7 +347,7 @@
 
 .Keyboard-Row .Special-Button:hover {
     font-size: larger;
-    cursor: url('/public/Cursor.png') 0 0, auto;
+    cursor: url('/Cursor.png') 0 0, auto;
 }
 
 

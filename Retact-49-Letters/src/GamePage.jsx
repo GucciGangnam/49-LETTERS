@@ -11,7 +11,7 @@ import { LoadingScreen } from "./LoadingScreen";
 
 
 // COMPONENTS 
-export const GamePage = ({ setGameState, gameBeingPlayed }) => {
+export const GamePage = ({ setGameState, gameBeingPlayed, fetchAllGames }) => {
 
     // LOGIC 
     const [gameFinished, setGameFinished] = useState(false);
@@ -292,10 +292,13 @@ export const GamePage = ({ setGameState, gameBeingPlayed }) => {
             const result = await response.json();
             console.log(result)
 
-            setTimeout(() => {
-                setLoading(false);
-                setGameState("Landing");
-            }, 1500);
+            // setTimeout(() => {
+            //     setLoading(false);
+            //     setGameState("Landing");
+            // }, 1500);
+            setLoading(false);
+            fetchAllGames();
+            setGameState("Landing");
             console.log("response yes ok");
 
         } catch (error) {

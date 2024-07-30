@@ -219,19 +219,16 @@ background-color: black;
 /* LEADER BOARD  */
 
 .Leaderboard-Container {
-    padding-top: 20px;
     max-width: 95%;
     display: flex;
     gap: 10px;
-    /* outline: 1px solid black; */
-    /* padding: 10px; */
+    outline: 1px solid black;
+    background-color: rgb(247, 247, 236);
+    padding: 10px;
     border-radius: 10px;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
     flex: 1;
-    padding-top: 30px;
-
 }
 
 .Leaderboard-Title-Container {
@@ -267,10 +264,11 @@ background-color: black;
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    width: 95%;
-    max-width: 95%;
-    /* background-color: var(--Light-Gray); */
-    outline: 1px solid black;
+    width: 90%;
+    max-width: 90%;
+    background-color: white;
+    /* outline: 1px solid black; */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
     position: relative;
     text-align: center;
 }

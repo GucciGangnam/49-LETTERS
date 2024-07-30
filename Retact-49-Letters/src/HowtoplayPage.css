@@ -1,0 +1,73 @@
+.HowtoplayPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 10px;
+    min-height: 100vh;
+}
+
+.HTP-Content{ 
+    background-color: yellow;
+
+}
+
+.HTP-Section{
+    background-color: rgb(232, 232, 232);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 600px;
+    max-width: 90%;
+    border-radius: 10px;
+    padding: 10px;
+
+
+}
+.HTP-Text{
+    width: 60%;
+    /* text-align: center; */
+
+}
+.HTP-IMG{
+
+}
+
+.HTP-IMG img {
+    height: 90px
+
+}
+
+
+ul{ 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+li{ 
+    text-align: left;
+}
+
+
+.HowtoplayPage button {
+    outline: 1px solid black;
+    background-color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 20px;
+    margin-bottom: 100px;
+
+}
+
+.HowtoplayPage button:hover {
+    background-color: var(--Green);
+    border: none;
+    border-radius: 25px;
+    padding: 20px;
+    color: white;
+    cursor: url('/Cursor.png') 0 0, auto;
+}
+
+

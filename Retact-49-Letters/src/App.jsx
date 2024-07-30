@@ -12,6 +12,7 @@ import './App.css'
 import { LandingPage } from './LandingPage'
 import { GamePage } from './GamePage'
 import { LoadingScreen } from './LoadingScreen'
+import { HowtoplayPage } from './HowtoplayPage'
 
 
 // COMPONENT
@@ -89,7 +90,10 @@ const fetchAllGames = async () => {
             <LandingPage setGameState={setGameState} allGames={allGames} setGameBeingPlayed={setGameBeingPlayed}/>
           )}
           {gameState === 'Play' && (
-            <GamePage setGameState={setGameState} allGames={allGames} gameBeingPlayed={gameBeingPlayed} />
+            <GamePage setGameState={setGameState} allGames={allGames} gameBeingPlayed={gameBeingPlayed} fetchAllGames={fetchAllGames} />
+          )}
+          {gameState === 'Howtoplay' && (
+            <HowtoplayPage setGameState={setGameState}/>
           )}
         </>
       )}

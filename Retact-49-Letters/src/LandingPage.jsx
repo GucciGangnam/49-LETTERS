@@ -57,6 +57,11 @@ export const LandingPage = ({ setGameState, allGames, setGameBeingPlayed }) => {
         setGameState('Play')
     }
 
+    // Handle how to play 
+    const handleHowtoplay = () => { 
+        setGameState('Howtoplay')
+    }
+
 
 
     // RETURN
@@ -142,7 +147,9 @@ export const LandingPage = ({ setGameState, allGames, setGameBeingPlayed }) => {
                 </div>
             </div>
 
-            <div className="How-To-Play-Container">
+            <div 
+            onClick={handleHowtoplay}
+            className="How-To-Play-Container">
                 <div className="How-To-Play-Container-Box">
                     H
                 </div>
